@@ -138,8 +138,6 @@ public class TextGraph {
 	}
 	
 	public ArrayList<String> FindBridge(String src,String des){
-		if(!gph.getSet().contains(src))	return null;
-		if(!gph.getSet().contains(des))	return null;
 		Set<String> desSet=new HashSet<String>();
 		for(String s:gph.getMap().keySet()){
 			LinkedList<Graph.Node> lst=gph.getMap().get(s);
@@ -148,41 +146,41 @@ public class TextGraph {
 					desSet.add(s);break;
 				}
 		}
+		
 		Set<String> srcSet=new HashSet<>();
 		for(Graph.Node nd:gph.getMap().get(src))
 			srcSet.add(nd.value);
 		
 		Set<String> Bridge=new HashSet<>();
 		Bridge.addAll(srcSet);Bridge.retainAll(desSet);
-		if(Bridge.size()==0)	return null;
+		
+		if(Bridge.size()==0)	
+			return null;
 		ArrayList<String> lst=new ArrayList<>();
 		for(String str:Bridge)
 			lst.add(str);
 		return lst;
-		/*if(lst.length==1)
-			System.out.println("The bridge word from "+src+" to "+des+" is: "+lst[0]);
-		else{
-			System.out.print("The bridge words form "+src+" to "+des+" are: ");
-			for(int i=0;i<lst.length-1;i++)
-				System.out.print(lst[i]+",");
-			System.out.println("and "+lst[lst.length-1]);
-		}*/
 	}
 	
 	public String OuputBridge(String src,String des){
-		if(src.equals("")) return new String("请输入first单词！");
-		if(des.equals("")) return new String("请输入second单词！");
-		if(!gph.getSet().contains(src))
+		if(src.equals("")) 
+			return new String("请输入first单词！");
+		if(des.equals(""))
+			return new String("请输入second单词！");
+		if(!gph.getSet().contains(src)) 
 			return new String("No "+src+" in the graph!");
 		if(!gph.getSet().contains(des))
 			return new String("No "+des+" in the graph!");
+		
 		ArrayList<String> lst=FindBridge(src, des);
-		if(lst==null)	return new String("No bridge words from \""+src+"\" to \""+des+"\"!");
-		if(lst.size()==1)
+		if(lst==null)	
+			return new String("No bridge words from \""+src+"\" to \""+des+"\"!");
+		if(lst.size()==1) 
 			return new String("The bridge word from \""+src+"\" to \""+des+"\" is: \""+lst.get(0)+"\"");
+		
 		String answer=new String("The bridge words form \""+src+"\" to \""+des+"\" are: ");
 		for(int i=0;i<lst.size()-1;i++)
-			answer+="\""+lst.get(i)+"\",";
+			  answer+="\""+lst.get(i)+"\",";
 		answer+="and \""+lst.get(lst.size()-1)+"\"";
 		return answer;
 	}

@@ -97,8 +97,18 @@ public class Myframe {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.getContentPane().setLayout(null);
+		
+		frame.setSize(1039, 642);
+		frame.setLocationRelativeTo(null);//放在屏幕中央。这两句的顺序很重要，必须先设置size，再放在中央
+		
+		frame.setResizable(false);
+		frame.setFont(new Font("Arial", Font.PLAIN, 12));
+		frame.setTitle("\u6587\u672C\u6709\u5411\u56FE");
+		//frame.setBounds(100, 100);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel0 = new JPanel();
 		panel0.setBounds(0, 0, 1026, 595);
@@ -124,6 +134,8 @@ public class Myframe {
             		 JFileChooser chooser =new JFileChooser();
      			    chooser.setCurrentDirectory(new File("."));
      			    chooser.setSelectedFile(new File("newImage.jpg"));
+     			   //chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);只选择
+     			    //file.exists() && dir.isDirectory()判断文件和目录是否存在
      			     int result =chooser.showSaveDialog(panel0);
      			     String filePath=chooser.getSelectedFile().getPath();
      			    Image img = Toolkit.getDefaultToolkit().getImage("D:/graphviz-2.38/workspace/5.jpg");
@@ -357,7 +369,7 @@ public class Myframe {
 		btnInsert.setFont(new Font("宋体", Font.PLAIN, 18));
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textArea_1.setText(core.generateNewText(tgh,textArea_2.getText() ));
+				textArea_1.setText(core.generateNewText(tgh,textArea_2.getText()));
 			}
 		});
 		btnInsert.setBounds(426, 241, 77, 97);
@@ -420,10 +432,6 @@ public class Myframe {
 		btnContinue.setBounds(254, 352, 254, 29);
 		textipanel.add(btnContinue);
 		
-		frame.setFont(new Font("Arial", Font.PLAIN, 12));
-		frame.setTitle("\u6587\u672C\u6709\u5411\u56FE");
-		frame.setBounds(100, 100, 1039, 642);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//frame.setUndecorated(true);
 	}
 	

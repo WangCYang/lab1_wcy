@@ -234,7 +234,7 @@ public class Graph {
 		}
 		//else if(m_map.keySet().contains(father)){
 		else if(TreeNode.keySet().contains(father)&&TreeNode.get(father).size()!=0){
-		stk.add( (LinkedList<String>) (TreeNode.get(father)).clone());
+		stk.add((LinkedList<String>)(TreeNode.get(father)).clone());
 		}
 		else{
 		path.removeLast();
